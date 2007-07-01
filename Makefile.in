@@ -200,7 +200,7 @@ nemesis_SOURCES = nemesis.c
 # mpinemesis (initializes MPI before starting Python)
 mpinemesis_SOURCES = nemesis.c
 mpinemesis_CFLAGS = -DUSE_MPI
-EXTRA_DIST = setup.py
+EXTRA_DIST = setup.py archimedes/__init__.py
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -369,7 +369,7 @@ distclean-tags:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/aux-config $(distdir)/m4
+	$(mkdir_p) $(distdir)/archimedes $(distdir)/aux-config $(distdir)/m4
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
