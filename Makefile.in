@@ -200,6 +200,7 @@ nemesis_SOURCES = nemesis.c
 # mpinemesis (initializes MPI before starting Python)
 mpinemesis_SOURCES = nemesis.c
 mpinemesis_CFLAGS = -DUSE_MPI
+EXTRA_DIST = setup.py
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
