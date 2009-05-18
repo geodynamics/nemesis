@@ -18,7 +18,7 @@ AC_ARG_VAR(PYTHONPATH, [Python module search path])
 
 # Check for Python.
 AM_PATH_PYTHON([2.3])
-CIT_PYTHON_SYSCONFIG
+CIT_PYTHON_CONFIG
 
 # Check for Python modules and packages.
 CIT_PYTHON_EGG_SETUP
