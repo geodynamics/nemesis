@@ -16,15 +16,17 @@ AM_INIT_AUTOMAKE([foreign])
 AC_ARG_VAR(PYTHON, [Python interpreter])
 AC_ARG_VAR(PYTHONPATH, [Python module search path])
 
+# Checks for programs.
+AC_PROG_CC([mpicc hcc mpcc mpcc_r mpxlc cmpicc gcc cc cl icc ecc pgcc xlc xlc_r])
+
 # Check for Python.
 AM_PATH_PYTHON([2.3])
 CIT_PYTHON_CONFIG
+CIT_CHECK_PYTHON_HEADER
+CIT_CHECK_PYTHON_SHARED
 
 # Check for Python modules and packages.
 CIT_PYTHON_EGG_SETUP
-
-# Checks for programs.
-AC_PROG_CC([mpicc hcc mpcc mpcc_r mpxlc cmpicc gcc cc cl icc ecc pgcc xlc xlc_r])
 
 # Checks for libraries.
 AC_SEARCH_LIBS([MPI_Init], [mpi mpich], [], [AC_MSG_ERROR([MPI library not found])])
