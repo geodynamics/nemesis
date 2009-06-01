@@ -5,7 +5,7 @@ dnl
 # $Id: configure.ac 5935 2007-01-30 21:16:23Z leif $
 
 AC_PREREQ(2.59)
-AC_INIT([nemesis], [1.0], [leif@geodynamics.org])
+AC_INIT([nemesis], [1.0.1], [leif@geodynamics.org])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([nemesis.c])
 AC_CONFIG_HEADER([config.h])
