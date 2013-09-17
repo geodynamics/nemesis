@@ -1,0 +1,7 @@
+*~
+configure
+config.h.in
+aux-config
+autom4te.cache
+aclocal.m4
+Makefile.in
