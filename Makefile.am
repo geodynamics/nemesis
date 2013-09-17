@@ -15,11 +15,4 @@ nemesis_SOURCES = nemesis.c
 mpinemesis_SOURCES = nemesis.c
 mpinemesis_CFLAGS = -DUSE_MPI
 
-install-data-hook:
-	top_builddir=`$(am__cd) $(top_builddir) && pwd` && \
-		cd $(top_srcdir) && \
-		$(PYTHON) setup.py install --prefix=$(prefix)
-
-EXTRA_DIST = setup.py
-
 ## end of Makefile.am
