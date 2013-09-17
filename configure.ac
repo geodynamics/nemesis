@@ -26,7 +26,13 @@ CIT_CHECK_PYTHON_HEADER
 CIT_CHECK_PYTHON_SHARED
 
 # Check for Python modules and packages.
-CIT_PYTHON_EGG_SETUP
+# Assume that if we have pyre, we have pythia w/mpi.
+CIT_PYTHON_MODULE([pyre],[0.8.1])
+
+# Add pyre path to PYTHON_EGG_CPPFLAGS
+eval p=`$PYTHON -c "import pyre; print pyre.__""file__.replace('pyre/__init__.pyc','')"`
+PYTHON_EGG_CPPFLAGS="-I$p"
+AC_SUBST(PYTHON_EGG_CPPFLAGS)
 
 # Checks for libraries.
 AC_SEARCH_LIBS([MPI_Init], [mpi mpich], [], [AC_MSG_ERROR([MPI library not found])])
