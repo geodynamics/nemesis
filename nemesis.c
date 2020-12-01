@@ -63,11 +63,42 @@
 #include "mpi/_mpi.c"
 
 struct _inittab inittab[] = {
-    { "_mpi", init_mpi },
+    { "_mpi", PyInit__mpi },
     { 0, 0 }
 };
 
-int main(int argc, char **argv)
+
+void
+freeWchar(wchar_t** strings,
+	  const int nstrings) {
+  for (int i = 0; i < nstrings; ++i) {
+    PyMem_RawFree(strings[i]);
+  }
+  PyMem_Del(strings);
+} 
+  
+
+wchar_t**
+wcharFromChar(char* strings[],
+	      const int nstrings) {
+  wchar_t** wstrings = PyMem_New(wchar_t*, nstrings);
+  if (!wstrings) {
+    return NULL;
+  }
+
+  for (int i = 0; i < nstrings; ++i) {
+    wstrings[i] = Py_DecodeLocale(strings[i], NULL);
+    if (!wstrings[i]) {
+      freeWchar(wstrings, i);
+      return NULL;
+    }
+  }
+
+  return wstrings;
+}
+
+
+int main(int argc, char* argv[])
 {
     int status;
     
@@ -84,25 +115,35 @@ int main(int argc, char **argv)
         fprintf(stderr, "%s: PyImport_ExtendInittab failed! Exiting...\n", argv[0]);
         return 1;
     }
+
+    wchar_t** _argv = wcharFromChar(argv, argc);
+    if (!_argv) {
+        fprintf(stderr, "%s: Decoding argv strings failed! Exiting...\n", argv[0]);
+        return 1;
+    }
     
     if (argc < 3 || strcmp(argv[1], "--pyre-start") != 0) {
-        return Py_Main(argc, argv);
+      status = Py_Main(argc, _argv);
+      freeWchar(_argv, argc);
+      return status;
     }
     
     /* make sure 'sys.executable' is set to the path of this program  */
-    Py_SetProgramName(argv[0]);
+    Py_SetProgramName(_argv[0]);
     
     /* initialize Python */
     Py_Initialize();
     
     /* initialize sys.argv */
-    PySys_SetArgv(argc - 1, argv + 1);
+    PySys_SetArgv(argc - 1, _argv + 1);
+
+    freeWchar(_argv, argc);
     
     /* run the Python command */
     status = PyRun_SimpleString(COMMAND) != 0;
     
     /* shut down Python */
-    Py_Finalize();
+    Py_FinalizeEx();
     
 #ifdef USE_MPI
     /* shut down MPI */
