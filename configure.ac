@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl
 
 AC_PREREQ(2.59)
-AC_INIT([nemesis], [1.1.0], [leif@geodynamics.org])
+AC_INIT([nemesis], [2.0.0], [leif@geodynamics.org])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([nemesis.c])
 AC_CONFIG_HEADER([config.h])
@@ -18,17 +18,17 @@ AC_ARG_VAR(PYTHONPATH, [Python module search path])
 AC_PROG_CC([mpicc hcc mpcc mpcc_r mpxlc cmpicc gcc cc cl icc ecc pgcc xlc xlc_r])
 
 # Check for Python.
-AM_PATH_PYTHON([2.3])
+AM_PATH_PYTHON([3.6])
 CIT_PYTHON_CONFIG
 CIT_CHECK_PYTHON_HEADER
 CIT_CHECK_PYTHON_SHARED
 
 # Check for Python modules and packages.
 # Assume that if we have pyre, we have pythia w/mpi.
-CIT_PYTHON_MODULE([pyre],[0.8.1])
+CIT_PYTHON_MODULE([pyre],[0.9.0])
 
 # Add pyre path to PYTHON_EGG_CPPFLAGS
-eval p=`$PYTHON -c "import pyre; print pyre.__""file__.replace('pyre/__init__.pyc','')"`
+eval p=`$PYTHON -c "import pyre; print(pyre.__""file__.replace('pyre/__init__.py',''))"`
 PYTHON_EGG_CPPFLAGS="-I$p"
 AC_SUBST(PYTHON_EGG_CPPFLAGS)
 
