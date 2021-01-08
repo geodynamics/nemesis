@@ -8,7 +8,7 @@ AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([nemesis.c])
 AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign tar-pax])
 
 # 'configure' options
 AC_ARG_VAR(PYTHON, [Python interpreter])
