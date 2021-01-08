@@ -18,7 +18,7 @@ AC_ARG_VAR(PYTHONPATH, [Python module search path])
 AC_PROG_CC([mpicc hcc mpcc mpcc_r mpxlc cmpicc gcc cc cl icc ecc pgcc xlc xlc_r])
 
 # Check for Python.
-AM_PATH_PYTHON([2.3])
+AM_PATH_PYTHON([2.7])
 CIT_PYTHON_CONFIG
 CIT_CHECK_PYTHON_HEADER
 CIT_CHECK_PYTHON_SHARED
@@ -28,7 +28,7 @@ CIT_CHECK_PYTHON_SHARED
 CIT_PYTHON_MODULE([pyre],[0.8.1])
 
 # Add pyre path to PYTHON_EGG_CPPFLAGS
-eval p=`$PYTHON -c "import pyre; print pyre.__""file__.replace('pyre/__init__.pyc','')"`
+eval p=`$PYTHON -c "import pyre; print(pyre.__""file__.replace('pyre/__init__.pyc',''))"`
 PYTHON_EGG_CPPFLAGS="-I$p"
 AC_SUBST(PYTHON_EGG_CPPFLAGS)
 
