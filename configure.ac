@@ -3,7 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 dnl
 
 AC_PREREQ(2.59)
-AC_INIT([nemesis], [1.1.0], [leif@geodynamics.org])
+AC_INIT([nemesis], [1.1.1], [leif@geodynamics.org])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([nemesis.c])
 AC_CONFIG_HEADER([config.h])
