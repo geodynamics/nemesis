@@ -1,4 +1,3 @@
-#!/usr/bin/env nemesis
 # ======================================================================
 #
 # Brad T. Aagaard, U.S. Geological Survey
