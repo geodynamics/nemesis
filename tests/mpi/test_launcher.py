@@ -36,7 +36,7 @@ class TestLauncher(unittest.TestCase):
         launcher.arguments = ARGUMENTS
         argv = launcher.argv()
 
-        argvE = ["mpirun", "-np", "${nodes}"]
+        argvE = ["mpiexec", "-n", "${nodes}"]
         argvE += [os.path.abspath(os.curdir)]
         argvE += ARGUMENTS
         self.assertEqual(len(argvE), len(argv))
