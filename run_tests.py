@@ -24,8 +24,6 @@ which is not measured by coverage.
 import unittest
 import sys
 
-import tests.mpi
-
 
 class TestApp(object):
     """Application to run tests.
@@ -35,6 +33,8 @@ class TestApp(object):
         """
         Run the application.
         """
+        sys.path.append("tests/mpi")
+        
         success = unittest.TextTestRunner(verbosity=2).run(self._suite()).wasSuccessful()
 
         if not success:
@@ -43,6 +43,8 @@ class TestApp(object):
     def _suite(self):
         """Setup the test suite.
         """
+        import tests.mpi
+
         suite = unittest.TestSuite()
 
         test_cases = []
