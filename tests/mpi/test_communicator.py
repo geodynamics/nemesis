@@ -28,7 +28,7 @@ class TestCommunicator(unittest.TestCase):
     def test_communicator(self):
         app = MPICommApp()
         nodes = app.nodes
-        app.run(argv=["mpicommapp", "--nodes={:d}".format(nodes)])
+        app.run(argv=["mpicommapp", "--nodes={:d}".format(nodes), "--launcher.command=mpiexec -n ${nodes} -host localhost:${nodes}"])
 
 
 def test_classes():

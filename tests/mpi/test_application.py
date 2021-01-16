@@ -27,7 +27,7 @@ class TestApplication(unittest.TestCase):
     def test_run(self):
         app = MPIApp()
         app.nodes = 3
-        app.run(argv=["mpiapp"])
+        app.run(argv=["mpiapp", "--launcher.command=mpiexec -n ${nodes} -host localhost:${nodes}"])
         for node in range(app.nodes):
             filename = app.log_filename(node)
             with open(filename, "r") as fin:
