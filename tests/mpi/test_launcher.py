@@ -16,7 +16,7 @@
 import unittest
 import os
 
-from mpi.Launcher import Launcher
+from pythia.mpi.Launcher import Launcher
 
 
 class TestLauncher(unittest.TestCase):

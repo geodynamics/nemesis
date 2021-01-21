@@ -55,12 +55,12 @@
 "path = path.split(':'); " \
 "path.extend(sys.path); " \
 "sys.path = path; " \
-"from pyre.applications import loadObject; " \
+"from pythia.pyre.applications import loadObject; " \
 "entry = loadObject(entry); " \
 "entry(sys.argv[3:], kwds={'requires': requires})"
 
 /* include the implementation of _mpi */
-#include "mpi/_mpi.c"
+#include "pythia/mpi/_mpi.c"
 
 struct _inittab inittab[] = {
     { "_mpi", PyInit__mpi },

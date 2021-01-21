@@ -12,8 +12,8 @@
 # ======================================================================
 #
 
-import mpi
-from mpi.Application import Application
+import pythia.mpi
+from pythia.mpi.Application import Application
 
 class MPIApp(Application):
 
@@ -28,7 +28,7 @@ class MPIApp(Application):
         return ["Process: {}, Size: {}\n".format(rank, self.nodes)]
 
     def main(self, *args, **kwds):
-        comm = mpi.world()
+        comm = pythia.mpi.world()
         with open(self.log_filename(comm.rank), "w") as fout:
             for line in self.log_output(comm.rank):
                 fout.write(line)

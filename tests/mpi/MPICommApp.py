@@ -15,8 +15,8 @@
 import unittest
 
 
-from mpi.Application import Application
-import mpi.Communicator
+from pythia.mpi.Application import Application
+import pythia.mpi.Communicator
 
 
 class MPICommApp(Application, unittest.TestCase):
@@ -27,7 +27,7 @@ class MPICommApp(Application, unittest.TestCase):
         self.nodes = 2
 
     def main(self, *args, **kwds):
-        self.world = mpi.Communicator.world()
+        self.world = pythia.mpi.Communicator.world()
 
         self.test_world()
         self.test_barrier()
@@ -35,7 +35,7 @@ class MPICommApp(Application, unittest.TestCase):
         self.test_port()
         
     def test_world(self):
-        self.assertTrue(mpi.MPI_COMM_WORLD == self.world.handle())
+        self.assertTrue(pythia.mpi.MPI_COMM_WORLD == self.world.handle())
         
     def test_barrier(self):
         self.world.barrier()
