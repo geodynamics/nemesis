@@ -55,12 +55,12 @@
 "path = path.split(':'); " \
 "path.extend(sys.path); " \
 "sys.path = path; " \
-"from pyre.applications import loadObject; " \
+"from pythia.pyre.applications import loadObject; " \
 "entry = loadObject(entry); " \
 "entry(sys.argv[3:], kwds={'requires': requires})"
 
 /* include the implementation of _mpi */
-#include "mpi/_mpi.c"
+#include "pythia/mpi/_mpi.c"
 
 struct _inittab inittab[] = {
     { "_mpi", PyInit__mpi },
@@ -122,7 +122,7 @@ int main(int argc, char* argv[])
         return 1;
     }
     
-    if (argc < 3 || strcmp(argv[1], "--pyre-start") != 0) {
+    if (argc < 3 || strcmp(argv[1], "--pythia-start") != 0) {
       status = Py_Main(argc, _argv);
       freeWchar(_argv, argc);
       return status;

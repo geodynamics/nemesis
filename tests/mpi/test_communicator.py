@@ -15,8 +15,6 @@
 
 import unittest
 
-import mpi
-
 from MPICommApp import MPICommApp
 
 

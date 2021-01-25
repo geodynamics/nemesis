@@ -23,12 +23,11 @@ CIT_PYTHON_CONFIG
 CIT_CHECK_PYTHON_HEADER
 CIT_CHECK_PYTHON_SHARED
 
-# Check for Python modules and packages.
-# Assume that if we have pyre, we have pythia w/mpi.
-CIT_PYTHON_MODULE([pyre],[0.9.0])
+# Check for pythia (which includes mpi).
+CIT_PYTHON_MODULE([pythia],[0.9.0])
 
-# Add pyre path to PYTHON_EGG_CPPFLAGS
-eval p=`$PYTHON -c "import pyre; print(pyre.__""file__.replace('pyre/__init__.py',''))"`
+# Add pythia path to PYTHON_EGG_CPPFLAGS
+eval p=`$PYTHON -c "import pythia; print(pythia.__""file__.replace('pythia/__init__.py',''))"`
 PYTHON_EGG_CPPFLAGS="-I$p"
 AC_SUBST(PYTHON_EGG_CPPFLAGS)
 
