@@ -1,18 +1,19 @@
-## Process this file with automake to produce Makefile.in
+ACLOCAL_AMFLAGS = -I m4
 
-ACLOCAL_AMFLAGS = -I ./m4
+SUBDIRS = \
+	src
 
-bin_PROGRAMS = nemesis mpinemesis
+if ENABLE_TESTING
+  SUBDIRS += tests
+endif
 
-AM_CPPFLAGS = $(PYTHON_EGG_CPPFLAGS) $(PYTHON_CPPFLAGS)
-AM_LDFLAGS = $(PYTHON_LDFLAGS)
-LIBS = $(PYTHON_LIBS)
+DISTCHECK_CONFIGURE_FLAGS = \
+	--enable-testing \
+	CPPFLAGS="-I${CPPUNIT_INCDIR} -I${PYTHIA_INCDIR} -I${CIG_INCDIR}" \
+	LDFLAGS="-L${CPPUNIT_LIBDIR} -L${CIG_LIBDIR}"
 
-# nemesis (links MPI, but does not initialize it)
-nemesis_SOURCES = nemesis.c
+EXTRA_DIST = \
+	CHANGES
 
-# mpinemesis (initializes MPI before starting Python)
-mpinemesis_SOURCES = nemesis.c
-mpinemesis_CFLAGS = -DUSE_MPI
 
-## end of Makefile.am
+# End of file
